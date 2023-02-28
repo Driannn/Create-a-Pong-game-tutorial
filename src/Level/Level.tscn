@@ -1,0 +1,223 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Actors/Oponnent.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Actors/Ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Actors/Ball.gd" type="Script" id=4]
+[ext_resource path="res://Assets/MAPA 1 THEME_01.mp3" type="AudioStream" id=5]
+[ext_resource path="res://src/Level/Level.gd" type="Script" id=6]
+[ext_resource path="res://Assets/PoetsenOne-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Assets/ping_pong_8bit_beeep.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Bup.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/pong de pana.png" type="Texture" id=10]
+[ext_resource path="res://Assets/go down.png" type="Texture" id=11]
+[ext_resource path="res://Assets/go up.png" type="Texture" id=12]
+[ext_resource path="res://src/Level/Timer.gd" type="Script" id=13]
+
+[sub_resource type="DynamicFont" id=1]
+size = 35
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = ExtResource( 7 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 704.265, 10 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+[node name="Level" type="Node"]
+script = ExtResource( 6 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.117647, 0.207843, 0.188235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ball" parent="." instance=ExtResource( 3 )]
+position = Vector2( 640, 360 )
+script = ExtResource( 4 )
+
+[node name="PongTitle" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -286.0
+margin_top = -258.0
+margin_right = 312.0
+margin_bottom = -173.0
+custom_colors/font_color = Color( 0.952941, 0.313726, 0.160784, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "THE GAME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pong de pana" type="Sprite" parent="."]
+position = Vector2( 624, 113 )
+rotation = -0.13439
+scale = Vector2( 0.135749, 0.135749 )
+texture = ExtResource( 10 )
+
+[node name="go down" type="Sprite" parent="."]
+position = Vector2( 305.455, 635.433 )
+scale = Vector2( 0.128811, 0.128811 )
+texture = ExtResource( 11 )
+
+[node name="go up" type="Sprite" parent="."]
+position = Vector2( 312, 547 )
+scale = Vector2( 0.146609, 0.146609 )
+texture = ExtResource( 12 )
+
+[node name="Score title" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 337.0
+margin_top = 319.0
+margin_right = 337.0
+margin_bottom = 212.0
+custom_colors/font_color = Color( 0.85098, 0.847059, 0.843137, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Score
+
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpponentScore" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 507.0
+margin_top = 275.0
+margin_right = 337.0
+margin_bottom = 275.0
+custom_colors/font_color = Color( 0.85098, 0.847059, 0.843137, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerScore" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 169.0
+margin_top = 275.0
+margin_right = 339.0
+margin_bottom = 275.0
+custom_colors/font_color = Color( 0.85098, 0.847059, 0.843137, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CountdownLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -120.0
+custom_colors/font_color = Color( 0.952941, 0.313726, 0.160784, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 50, 360 )
+
+[node name="Opponent" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1230, 360 )
+
+[node name="WallTop" type="StaticBody2D" parent="."]
+position = Vector2( 640, -10 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
+shape = SubResource( 6 )
+
+[node name="WallDown" type="StaticBody2D" parent="."]
+position = Vector2( 640, 730 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDown"]
+shape = SubResource( 6 )
+
+[node name="Left" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2( -20, 360 )
+scale = Vector2( 2, 35 )
+shape = SubResource( 7 )
+
+[node name="Right" type="Area2D" parent="."]
+position = Vector2( 1320, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2( -20, 360 )
+scale = Vector2( 2, 35 )
+shape = SubResource( 7 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+script = ExtResource( 13 )
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+bus = "BGM"
+
+[node name="ScoreSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -3.029
+pitch_scale = 1.74
+bus = "SFX"
+
+[node name="TimeOutSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -1.107
+pitch_scale = 1.65
+
+[node name="CountdownSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -6.0
+pitch_scale = 0.8
+bus = "SFX"
+
+[connection signal="body_entered" from="Left" to="." method="_on_Left_body_entered"]
+[connection signal="body_entered" from="Right" to="." method="_on_Right_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
